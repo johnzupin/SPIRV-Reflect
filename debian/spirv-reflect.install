@@ -1,0 +1,3 @@
+usr/bin/spirv-reflect
+spirv_reflect.c usr/include
+spirv_reflect.h usr/include
