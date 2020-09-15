@@ -1,0 +1,5 @@
+spirv-reflect (1.0.0+75-1) focal; urgency=medium
+
+  * Initial release
+
+ -- John Zupin <john@lunarg.com>  Tue, 15 Sep 2020 15:24:15 -0600
