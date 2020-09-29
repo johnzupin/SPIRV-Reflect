@@ -1,3 +1,9 @@
+spirv-reflect (1.0.0+84-1lunarg20.04-2) focal; urgency=medium
+
+  * packaging: update install path
+
+ -- John Zupin <john@odin>  Tue, 29 Sep 2020 09:20:39 -0600
+
 spirv-reflect (1.0.0+84-1lunarg20.04-1) focal; urgency=medium
 
   [ pilzschaf ]
