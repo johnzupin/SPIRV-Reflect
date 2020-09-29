@@ -1,4 +1,4 @@
 usr/bin/spirv-reflect
 spirv_reflect.c usr/include/spirv-reflect
 spirv_reflect.h usr/include/spirv-reflect
-include/spirv/unified1/spirv.h usr/include/spirv-reflect/include/spirv/unified
+include/spirv/unified1/spirv.h usr/include/spirv-reflect/include/spirv/unified1
