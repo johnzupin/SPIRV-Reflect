@@ -1,3 +1,19 @@
+spirv-reflect (1.0.0+84-1lunarg18.04-1) bionic; urgency=medium
+
+  [ pilzschaf ]
+  * Fixed some signed unsigned mismatch warning when compiling in C++ mode
+
+  [ Greg Fischer ]
+  * Fix unused assert variables.
+
+  [ John Zupin ]
+  * packages: update path and add spirv.h to install
+
+  [ Greg Fischer ]
+  * Fix compilation type warnings
+
+ -- John Zupin <john@odin>  Mon, 28 Sep 2020 18:32:43 -0600
+
 spirv-reflect (1.0.0+75-1) bionic; urgency=medium
 
   * Initial release
