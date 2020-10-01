@@ -1,5 +1,5 @@
 Source: spirv-reflect
-Section: unknown
+Section: graphics
 Priority: optional
 Maintainer: John Zupin <john@lunarg.com>
 Build-Depends: debhelper (>= 10),
