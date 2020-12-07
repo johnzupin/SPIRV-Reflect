@@ -107,6 +107,14 @@ std::string ToStringShaderStage(SpvReflectShaderStageFlagBits stage) {
     case SPV_REFLECT_SHADER_STAGE_GEOMETRY_BIT                : return "GS";
     case SPV_REFLECT_SHADER_STAGE_FRAGMENT_BIT                : return "PS";
     case SPV_REFLECT_SHADER_STAGE_COMPUTE_BIT                 : return "CS";
+    case SPV_REFLECT_SHADER_STAGE_TASK_BIT_NV                 : return "TASK";
+    case SPV_REFLECT_SHADER_STAGE_MESH_BIT_NV                 : return "MESH";
+    case SPV_REFLECT_SHADER_STAGE_RAYGEN_BIT_KHR              : return "RAYGEN";
+    case SPV_REFLECT_SHADER_STAGE_ANY_HIT_BIT_KHR             : return "ANY_HIT";
+    case SPV_REFLECT_SHADER_STAGE_CLOSEST_HIT_BIT_KHR         : return "CLOSEST_HIT";
+    case SPV_REFLECT_SHADER_STAGE_MISS_BIT_KHR                : return "MISS";
+    case SPV_REFLECT_SHADER_STAGE_INTERSECTION_BIT_KHR        : return "INTERSECTION";
+    case SPV_REFLECT_SHADER_STAGE_CALLABLE_BIT_KHR            : return "CALLABLE";
   }
   // Unhandled SpvReflectShaderStageFlagBits enum value
   return "???";
@@ -173,17 +181,18 @@ std::string ToStringResourceType(SpvReflectResourceType res_type) {
 
 std::string ToStringDescriptorType(SpvReflectDescriptorType value) {
   switch (value) {
-    case SPV_REFLECT_DESCRIPTOR_TYPE_SAMPLER                : return "VK_DESCRIPTOR_TYPE_SAMPLER";
-    case SPV_REFLECT_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER : return "VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER";
-    case SPV_REFLECT_DESCRIPTOR_TYPE_SAMPLED_IMAGE          : return "VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE";
-    case SPV_REFLECT_DESCRIPTOR_TYPE_STORAGE_IMAGE          : return "VK_DESCRIPTOR_TYPE_STORAGE_IMAGE";
-    case SPV_REFLECT_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER   : return "VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER";
-    case SPV_REFLECT_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER   : return "VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER";
-    case SPV_REFLECT_DESCRIPTOR_TYPE_UNIFORM_BUFFER         : return "VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER";
-    case SPV_REFLECT_DESCRIPTOR_TYPE_STORAGE_BUFFER         : return "VK_DESCRIPTOR_TYPE_STORAGE_BUFFER";
-    case SPV_REFLECT_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC : return "VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC";
-    case SPV_REFLECT_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC : return "VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC";
-    case SPV_REFLECT_DESCRIPTOR_TYPE_INPUT_ATTACHMENT       : return "VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT";
+    case SPV_REFLECT_DESCRIPTOR_TYPE_SAMPLER                    : return "VK_DESCRIPTOR_TYPE_SAMPLER";
+    case SPV_REFLECT_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER     : return "VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER";
+    case SPV_REFLECT_DESCRIPTOR_TYPE_SAMPLED_IMAGE              : return "VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE";
+    case SPV_REFLECT_DESCRIPTOR_TYPE_STORAGE_IMAGE              : return "VK_DESCRIPTOR_TYPE_STORAGE_IMAGE";
+    case SPV_REFLECT_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER       : return "VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER";
+    case SPV_REFLECT_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER       : return "VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER";
+    case SPV_REFLECT_DESCRIPTOR_TYPE_UNIFORM_BUFFER             : return "VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER";
+    case SPV_REFLECT_DESCRIPTOR_TYPE_STORAGE_BUFFER             : return "VK_DESCRIPTOR_TYPE_STORAGE_BUFFER";
+    case SPV_REFLECT_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC     : return "VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC";
+    case SPV_REFLECT_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC     : return "VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC";
+    case SPV_REFLECT_DESCRIPTOR_TYPE_INPUT_ATTACHMENT           : return "VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT";
+    case SPV_REFLECT_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR : return "VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR";
   }
   // unhandled SpvReflectDescriptorType enum value
   return "VK_DESCRIPTOR_TYPE_???";
@@ -255,13 +264,30 @@ std::string ToStringSpvBuiltIn(SpvBuiltIn built_in) {
     case SpvBuiltInSecondaryViewportMaskNV     : return "SecondaryViewportMaskNV";
     case SpvBuiltInPositionPerViewNV           : return "PositionPerViewNV";
     case SpvBuiltInViewportMaskPerViewNV       : return "ViewportMaskPerViewNV";
+    case SpvBuiltInLaunchIdKHR                 : return "InLaunchIdKHR";
+    case SpvBuiltInLaunchSizeKHR               : return "InLaunchSizeKHR";
+    case SpvBuiltInWorldRayOriginKHR           : return "InWorldRayOriginKHR";
+    case SpvBuiltInWorldRayDirectionKHR        : return "InWorldRayDirectionKHR";
+    case SpvBuiltInObjectRayOriginKHR          : return "InObjectRayOriginKHR";
+    case SpvBuiltInObjectRayDirectionKHR       : return "InObjectRayDirectionKHR";
+    case SpvBuiltInRayTminKHR                  : return "InRayTminKHR";
+    case SpvBuiltInRayTmaxKHR                  : return "InRayTmaxKHR";
+    case SpvBuiltInInstanceCustomIndexKHR      : return "InInstanceCustomIndexKHR";
+    case SpvBuiltInObjectToWorldKHR            : return "InObjectToWorldKHR";
+    case SpvBuiltInWorldToObjectKHR            : return "InWorldToObjectKHR";
+    case SpvBuiltInHitTNV                      : return "InHitTNV";
+    case SpvBuiltInHitKindKHR                  : return "InHitKindKHR";
+    case SpvBuiltInIncomingRayFlagsKHR         : return "InIncomingRayFlagsKHR";
+    case SpvBuiltInRayGeometryIndexKHR         : return "InRayGeometryIndexKHR";
 
     case SpvBuiltInMax:
     default:
       break;
   }
   // unhandled SpvBuiltIn enum value
-  return "???";
+  std::stringstream ss;
+  ss << "??? (" << built_in << ")";
+  return ss.str();
 }
 
 std::string ToStringSpvImageFormat(SpvImageFormat fmt) {
@@ -522,7 +548,7 @@ void ParseBlockMembersToTextLines(const char* indent, int indent_depth, bool fla
       // Begin struct
       TextLine tl = {};
       tl.indent = expanded_indent;
-      tl.type_name = member.type_description->type_name;
+      tl.type_name = (member.type_description->type_name == nullptr ? "" : member.type_description->type_name);
       tl.absolute_offset = member.absolute_offset;
       tl.relative_offset = member.offset;
       tl.size = member.size;
@@ -920,6 +946,7 @@ void StreamWriteShaderModule(std::ostream& os, const SpvReflectShaderModule& obj
   os << "source lang     : " << spvReflectSourceLanguage(obj.source_language) << "\n";
   os << "source lang ver : " << obj.source_language_version << "\n";
   os << "source file     : " << (obj.source_file != NULL ? obj.source_file : "") << "\n";
+  os << "shader stage    : " << ToStringShaderStage(obj.shader_stage) << "\n";
 
   if (obj.entry_point_count > 1) {
     // TODO: Figure out what to do with multiple entry points
@@ -928,7 +955,6 @@ void StreamWriteShaderModule(std::ostream& os, const SpvReflectShaderModule& obj
     StreamWriteEntryPoint(os, obj.entry_points[0], "");
   }
  
-  //os << "shader stage    : " << ToStringShaderStage(obj.shader_stage);
   //if ((obj.shader_stage == SPV_REFLECT_SHADER_STAGE_COMPUTE_BIT)) {
   //  os << "local size      : " << obj.ent
   //}
@@ -1522,10 +1548,10 @@ void SpvReflectToYaml::Write(std::ostream& os)
       WriteBlockVariableTypes(os, sm_.push_constant_blocks[i], indent_level+1);
     }
     for(uint32_t i=0; i<sm_.input_variable_count; ++i) {
-      WriteInterfaceVariableTypes(os, sm_.input_variables[i], indent_level+1);
+      WriteInterfaceVariableTypes(os, *sm_.input_variables[i], indent_level+1);
     }
     for(uint32_t i=0; i<sm_.output_variable_count; ++i) {
-      WriteInterfaceVariableTypes(os, sm_.output_variables[i], indent_level+1);
+      WriteInterfaceVariableTypes(os, *sm_.output_variables[i], indent_level+1);
     }
   }
 
@@ -1547,10 +1573,10 @@ void SpvReflectToYaml::Write(std::ostream& os)
   interface_variable_to_index_.clear();
   os << t0 << "all_interface_variables:" << std::endl;
   for(uint32_t i=0; i<sm_.input_variable_count; ++i) {
-    WriteInterfaceVariable(os, sm_.input_variables[i], indent_level+1);
+    WriteInterfaceVariable(os, *sm_.input_variables[i], indent_level+1);
   }
   for(uint32_t i=0; i<sm_.output_variable_count; ++i) {
-    WriteInterfaceVariable(os, sm_.output_variables[i], indent_level+1);
+    WriteInterfaceVariable(os, *sm_.output_variables[i], indent_level+1);
   }
 
   // struct SpvReflectShaderModule {
@@ -1604,18 +1630,18 @@ void SpvReflectToYaml::Write(std::ostream& os)
   // SpvReflectInterfaceVariable*      input_variables;
   os << t1 << "input_variables:" << std::endl;
   for(uint32_t i=0; i < sm_.input_variable_count; ++i) {
-    auto itor = interface_variable_to_index_.find(&sm_.input_variables[i]);
+    auto itor = interface_variable_to_index_.find(sm_.input_variables[i]);
     assert(itor != interface_variable_to_index_.end());
-    os << t2 << "- *iv" << itor->second << " # " << SafeString(sm_.input_variables[i].name) << std::endl;
+    os << t2 << "- *iv" << itor->second << " # " << SafeString(sm_.input_variables[i]->name) << std::endl;
   }
   // uint32_t                          output_variable_count;
   os << t1 << "output_variable_count: " << sm_.output_variable_count << ",\n";
   // SpvReflectInterfaceVariable*      output_variables;
   os << t1 << "output_variables:" << std::endl;
   for(uint32_t i=0; i < sm_.output_variable_count; ++i) {
-    auto itor = interface_variable_to_index_.find(&sm_.output_variables[i]);
+    auto itor = interface_variable_to_index_.find(sm_.output_variables[i]);
     assert(itor != interface_variable_to_index_.end());
-    os << t2 << "- *iv" << itor->second << " # " << SafeString(sm_.output_variables[i].name) << std::endl;
+    os << t2 << "- *iv" << itor->second << " # " << SafeString(sm_.output_variables[i]->name) << std::endl;
   }
   // uint32_t                          push_constant_count;
   os << t1 << "push_constant_count: " << sm_.push_constant_block_count << ",\n";
