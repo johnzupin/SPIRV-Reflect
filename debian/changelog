@@ -1,3 +1,53 @@
+spirv-reflect (1.0.0+114-1lunarg20.04-1) focal; urgency=medium
+
+  [ Mykhailo Parfeniuk ]
+  * Fixed Windows compilation issue
+
+  [ Jaebaek Seo ]
+  * Add Bazel build script
+  * ADDED: drop unused symbols
+
+  [ Jan Kroeze ]
+  * add some mesh shader execution modes
+
+  [ John Zupin ]
+  * packaging: update copyright
+
+  [ Lei Zhang ]
+  * Add support for reflection on StorageBuffer storage class
+  * Add a test to check StorageBuffer storage class reflection
+
+  [ Jan Kroeze ]
+  * add support for task / mesh shader execution model
+
+  [ Sixshaman ]
+  * Fix for warning that blocks building with /WX flag
+
+  [ hliatis ]
+  * Add support for the embedded source code
+  * Make sure to not calloc moudle->source_source if parser->source_embedded is null
+
+  [ Hai Nguyen ]
+  * Corrected parsing of OpAccessChain
+  * Suppressed warnings for string function on Windows
+  * Fixed bad member name access and added test cases
+  * Initial work on SPIR-V 1.5 parsing
+  * Clean up
+  * Updated spirv.h
+  * Initial reflection of ray trace information
+  * Added parsing of OpTypeRayQueryKHR
+  * Updated test cases
+  * Added missing shader stage processing for raytracing
+  * Made C++ noncopyable and upated tests
+
+  [ John Zupin ]
+  * packaging: update copyright
+
+  [ Jeremy Hayes ]
+  * Fix Werror(s)
+
+ -- John Zupin <john@odin>  Tue, 08 Dec 2020 11:47:44 -0700
+
 spirv-reflect (1.0.0+84-1lunarg20.04-3) focal; urgency=medium
 
   * packaging: don't build tests
