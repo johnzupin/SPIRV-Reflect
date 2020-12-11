@@ -1,11 +1,11 @@
 Source: spirv-reflect
 Section: graphics
 Priority: optional
-Maintainer: John Zupin <john@lunarg.com>
+Maintainer: John Zupin <johnz@lunarg.com>
 Build-Depends: debhelper (>= 10),
  cmake
 Standards-Version: 4.1.2
-Homepage: https://github.com/KhronosGroup/SPIRV-Reflect.git
+Homepage: https://github.com/KhronosGroup/SPIRV-Reflect
 Vcs-Git: https://github.com/KhronosGroup/SPIRV-Reflect.git
 Vcs-Browser: https://github.com/KhronosGroup/SPIRV-Reflect.git
 
