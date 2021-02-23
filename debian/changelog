@@ -1,3 +1,23 @@
+spirv-reflect (1.0.0+146~rc1-1lunarg20.04-1) focal; urgency=medium
+
+  [ Sixshaman ]
+  * Fixes for compiling error in Visual Studio without _CRT_SECURE_NO_WARNINGS
+
+  [ Mark Segal ]
+  * Add printing for non-vector types in common.cpp.
+  * Fix obvious bugs.
+  * Add format decoding for 64 bit widths.
+  * Print format in io_variables.
+  * Add missing format strings.
+
+  [ Hai Nguyen ]
+  * Minor updates to mutliple entry point support
+
+  [ Christoph Neuhauser ]
+  * Add missing break statements.
+
+ -- John Zupin <john@odin>  Mon, 22 Feb 2021 17:19:32 -0700
+
 spirv-reflect (1.0.0+114-1lunarg20.04-2) focal; urgency=medium
 
   * packaging: updated control homepage and maintainer's email
