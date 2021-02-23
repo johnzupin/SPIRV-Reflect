@@ -432,9 +432,58 @@ std::string ToStringFormat(SpvReflectFormat fmt) {
     case SPV_REFLECT_FORMAT_R32G32B32A32_UINT   : return "VK_FORMAT_R32G32B32A32_UINT";
     case SPV_REFLECT_FORMAT_R32G32B32A32_SINT   : return "VK_FORMAT_R32G32B32A32_SINT";
     case SPV_REFLECT_FORMAT_R32G32B32A32_SFLOAT : return "VK_FORMAT_R32G32B32A32_SFLOAT";
+    case SPV_REFLECT_FORMAT_R64_UINT            : return "VK_FORMAT_R64_UINT";
+    case SPV_REFLECT_FORMAT_R64_SINT            : return "VK_FORMAT_R64_SINT";
+    case SPV_REFLECT_FORMAT_R64_SFLOAT          : return "VK_FORMAT_R64_SFLOAT";
+    case SPV_REFLECT_FORMAT_R64G64_UINT         : return "VK_FORMAT_R64G64_UINT";
+    case SPV_REFLECT_FORMAT_R64G64_SINT         : return "VK_FORMAT_R64G64_SINT";
+    case SPV_REFLECT_FORMAT_R64G64_SFLOAT       : return "VK_FORMAT_R64G64_SFLOAT";
+    case SPV_REFLECT_FORMAT_R64G64B64_UINT      : return "VK_FORMAT_R64G64B64_UINT";
+    case SPV_REFLECT_FORMAT_R64G64B64_SINT      : return "VK_FORMAT_R64G64B64_SINT";
+    case SPV_REFLECT_FORMAT_R64G64B64_SFLOAT    : return "VK_FORMAT_R64G64B64_SFLOAT";
+    case SPV_REFLECT_FORMAT_R64G64B64A64_UINT   : return "VK_FORMAT_R64G64B64A64_UINT";
+    case SPV_REFLECT_FORMAT_R64G64B64A64_SINT   : return "VK_FORMAT_R64G64B64A64_SINT";
+    case SPV_REFLECT_FORMAT_R64G64B64A64_SFLOAT : return "VK_FORMAT_R64G64B64A64_SFLOAT";
   }
   // unhandled SpvReflectFormat enum value
   return "VK_FORMAT_???";
+}
+
+static std::string ToStringScalarType(const SpvReflectTypeDescription& type)
+{
+  switch(type.op) {
+    case SpvOpTypeVoid: {
+      return "void";
+      break;
+    }
+    case SpvOpTypeBool: {
+      return "bool";
+      break;
+    }
+    case SpvOpTypeInt: {
+      if (type.traits.numeric.scalar.signedness)
+        return "int";
+      else
+        return "uint";
+    }
+    case SpvOpTypeFloat: {
+      switch (type.traits.numeric.scalar.width) {
+        case 32:
+          return "float";
+        case 64:
+          return "double";
+        default:
+          break;
+      }
+    }
+    case SpvOpTypeStruct: {
+      return "struct";
+    }
+    default: {
+      break;
+    }
+  }
+  return "";
 }
 
 static std::string ToStringGlslType(const SpvReflectTypeDescription& type)
@@ -462,11 +511,10 @@ static std::string ToStringGlslType(const SpvReflectTypeDescription& type)
       }
     }
     break;
-
     default:
       break;
   }
-  return "";
+  return ToStringScalarType(type);
 }
 
 static std::string ToStringHlslType(const SpvReflectTypeDescription& type)
@@ -498,7 +546,7 @@ static std::string ToStringHlslType(const SpvReflectTypeDescription& type)
     default:
       break;
   }
-  return "";
+  return ToStringScalarType(type);
 }
 
 std::string ToStringType(SpvSourceLanguage src_lang, const SpvReflectTypeDescription& type)
@@ -951,6 +999,7 @@ void StreamWriteInterfaceVariable(std::ostream& os, const SpvReflectInterfaceVar
 void StreamWriteEntryPoint(std::ostream& os, const SpvReflectEntryPoint& obj, const char* indent)
 {
   os << indent << "entry point     : " << obj.name;
+  os << " (stage=" << ToStringShaderStage(obj.shader_stage) << ")";
   if (obj.shader_stage == SPV_REFLECT_SHADER_STAGE_COMPUTE_BIT) {
     os << "\n";
     os << "local size      : " << "(" << obj.local_size.x << ", " << obj.local_size.y << ", " << obj.local_size.z << ")";
@@ -964,18 +1013,14 @@ void StreamWriteShaderModule(std::ostream& os, const SpvReflectShaderModule& obj
   os << "source lang     : " << spvReflectSourceLanguage(obj.source_language) << "\n";
   os << "source lang ver : " << obj.source_language_version << "\n";
   os << "source file     : " << (obj.source_file != NULL ? obj.source_file : "") << "\n";
-  os << "shader stage    : " << ToStringShaderStage(obj.shader_stage) << "\n";
+  //os << "shader stage    : " << ToStringShaderStage(obj.shader_stage) << "\n";
 
-  if (obj.entry_point_count > 1) {
-    // TODO: Figure out what to do with multiple entry points
+  for (uint32_t i = 0; i < obj.entry_point_count; ++i) {
+    StreamWriteEntryPoint(os, obj.entry_points[i], "");
+    if (i < (obj.entry_point_count - 1)) {
+        os << "\n";
+    }
   }
-  else {
-    StreamWriteEntryPoint(os, obj.entry_points[0], "");
-  }
- 
-  //if ((obj.shader_stage == SPV_REFLECT_SHADER_STAGE_COMPUTE_BIT)) {
-  //  os << "local size      : " << obj.ent
-  //}
 }
 
 
