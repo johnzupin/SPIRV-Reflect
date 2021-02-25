@@ -1,3 +1,9 @@
+spirv-reflect (1.0.0+146~rc2-1lunarg20.04-1) focal; urgency=medium
+
+  * packaging: updated LunarG's copyrights
+
+ -- John Zupin <john@odin>  Thu, 25 Feb 2021 15:26:22 -0700
+
 spirv-reflect (1.0.0+146~rc1-1lunarg20.04-1) focal; urgency=medium
 
   [ Sixshaman ]
