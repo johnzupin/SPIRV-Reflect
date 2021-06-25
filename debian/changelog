@@ -1,3 +1,16 @@
+spirv-reflect (1.0.0+147~rc1-1lunarg20.04-1) focal; urgency=medium
+
+  [ John Zupin ]
+  * packaging: update debian/copyright file
+
+  [ tgfrerer ]
+  * fix corresponding vk format type in comment
+
+  [ Kevin McCullough ]
+  * Report result type for OpTypeImage
+
+ -- John Zupin <john@odin>  Fri, 25 Jun 2021 15:36:54 -0600
+
 spirv-reflect (1.0.0+146~rc2-1lunarg20.04-1) focal; urgency=medium
 
   * packaging: updated LunarG's copyrights
