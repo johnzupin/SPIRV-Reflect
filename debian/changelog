@@ -1,3 +1,16 @@
+spirv-reflect (1.0.0+148~rc1-1lunarg18.04-1) bionic; urgency=medium
+
+  [ Kevin McCullough ]
+  * Set SPV_REFLECT_TYPE_FLAG_ARRAY on SpvOpTypeRuntimeArray.
+
+  [ Roman ]
+  * Move constructor for ShaderModule
+
+  [ Hai Nguyen ]
+  * Added SpvReflectPrv prefix to address issue #122
+
+ -- John Zupin <john@odin>  Fri, 27 Aug 2021 17:21:11 -0600
+
 spirv-reflect (1.0.0+147~rc1-1lunarg18.04-1) bionic; urgency=medium
 
   [ John Zupin ]
