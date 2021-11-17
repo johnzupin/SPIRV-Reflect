@@ -1,3 +1,10 @@
+spirv-reflect (1.0.0+149~rc1-1lunarg18.04-1) bionic; urgency=medium
+
+  [ Awoloszyn ]
+  * Have stripper also remove SPV_GOOGLE_user_type
+
+ -- John Zupin <john@odin>  Tue, 16 Nov 2021 17:16:26 -0700
+
 spirv-reflect (1.0.0+148~rc1-1lunarg18.04-1) bionic; urgency=medium
 
   [ Kevin McCullough ]
