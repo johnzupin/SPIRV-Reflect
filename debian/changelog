@@ -1,3 +1,52 @@
+spirv-reflect (1.0.0+169~rc1-1lunarg18.04-1) bionic; urgency=medium
+
+  [ Mykhailo Parfeniuk ]
+  * Added reflection support invocations and output_vertices execution modes.
+
+  [ Mark Segal ]
+  * Record ids for array dimensions that are specialization constants.
+  * Handle runtime arrays as another dimension type.
+
+  [ Marijn Suijten ]
+  * Add accessed pointers through OpImageTexelPointer to entrypoint
+
+  [ blackbird806 ]
+  * Removed null test in SafeFree Macro
+
+  [ Hai Nguyen ]
+  * Added function to retrieve type name
+  * Actual implementation for getting type name
+  * Added RelaxedPrecision decorator parsing for interface variables
+
+  [ Tom Kneiphof ]
+  * Add test for runtime array of array of struct
+  * Fix segfault when parsing runtime array of array of struct
+
+  [ Hai Nguyen ]
+  * Added array information to spirv-reflect output
+  * Updated test YAML
+  * Added test cases for matrix major ordering (#131)
+  * Added test case to tester
+  * Added a note about row vs column ordering for matrices
+
+  [ Connor Haskins ]
+  * ignore built-in vars for vertex input description
+
+  [ John Zupin ]
+  * packaging: update copyright
+
+  [ Hai Nguyen ]
+  * Added push constants block output for spirv-reflect
+  * Incorporated darksylinc's patch for crash on RelaxedPrecision
+  * Added build option for static library
+  * Added options to control various build targets
+  * Added module flags to module creation
+  * Updated spirv.h to recent version
+  * Added missing cases for language and storage class
+  * Fixed for mac build
+
+ -- John Zupin <john@odin>  Thu, 03 Feb 2022 16:17:43 -0700
+
 spirv-reflect (1.0.0+149~rc1-1lunarg18.04-1) bionic; urgency=medium
 
   [ Awoloszyn ]
