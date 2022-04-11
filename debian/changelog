@@ -1,3 +1,10 @@
+spirv-reflect (1.0.0+171~rc1-1lunarg20.04-1) focal; urgency=medium
+
+  [ Hai Nguyen ]
+  * Added public include directory for static library
+
+ -- john <john@odin>  Mon, 11 Apr 2022 14:40:25 -0600
+
 spirv-reflect (1.0.0+169~rc1-1lunarg20.04-1) focal; urgency=medium
 
   [ Mykhailo Parfeniuk ]
