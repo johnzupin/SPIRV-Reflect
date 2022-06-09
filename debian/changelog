@@ -1,3 +1,22 @@
+spirv-reflect (1.0.0+183~rc1-1lunarg20.04-1) focal; urgency=medium
+
+  [ Tiago Chaves ]
+  * Avoid 'nullptr + 0' UB in IntersectSortedUint32
+
+  [ Hai Nguyen ]
+  * Fix for #143
+  * Detect spirv_reflect executable based on OS
+  * Fix for #141
+
+  [ Awoloszyn ]
+  * Add tracking of execution modes to entry points.
+  * Add the ability to use a different spirv.h
+
+  [ Daniele Vettorel ]
+  * Update SPIR-V header spirv.h to a recent version.
+
+ -- john <john@odin>  Thu, 09 Jun 2022 11:09:33 -0600
+
 spirv-reflect (1.0.0+171~rc1-1lunarg20.04-1) focal; urgency=medium
 
   [ Hai Nguyen ]
