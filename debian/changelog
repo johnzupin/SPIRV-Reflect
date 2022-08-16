@@ -1,3 +1,13 @@
+spirv-reflect (1.0.0+187~rc1-1lunarg20.04-1) focal; urgency=medium
+
+  [ Daniele Vettorel ]
+  * Update googletest submodule
+
+  [ manaskulkarni ]
+  * Support to query capabilities declared in module
+
+ -- john <john@odin>  Tue, 16 Aug 2022 10:36:58 -0600
+
 spirv-reflect (1.0.0+183~rc1-1lunarg20.04-1) focal; urgency=medium
 
   [ Tiago Chaves ]
