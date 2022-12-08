@@ -1,3 +1,14 @@
+spirv-reflect (1.0.0+192~rc1-1lunarg22.04-1) jammy; urgency=medium
+
+  [ Pedro J. Estébanez ]
+  * Fix spurious alloc error when there are no execution modes
+
+  [ Sebastien Alaiwan ]
+  * Trailing spaces
+  * Fix bad string allocation size
+
+ -- john <john@odin>  Thu, 08 Dec 2022 13:54:54 -0700
+
 spirv-reflect (1.0.0+187~rc1-1lunarg20.04-1) focal; urgency=medium
 
   [ Daniele Vettorel ]
