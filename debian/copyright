@@ -1,26 +1,25 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: spirv-reflect
+Source: https://github.com/KhronosGroup/SPIRV-Reflect
 
 Files: *
+Copyright: 2016-2022, Google Inc
+License: Apache-2 or Apache-2.0
+
+Files: CODE_OF_CONDUCT.adoc
 Copyright: 2018-2020, The Khronos Group Inc
-License: Apache-2.0
-
-Files: debian/*
-Copyright: 2022, LunarG Inc
-License: Apache-2.0
-
-Files: LICENSE
-       README.md
-       examples/main_hlsl_resource_types.cpp
-       main.cpp
-       spirv_reflect.c
-       spirv_reflect.h
-       util/stripper/io.h
-Copyright: 2016-2018, Google Inc
-License: Apache-2.0
+License: CC-BY-4
 
 Files: include/*
 Copyright: 2014-2020, The Khronos Group Inc
 License: MIT/X11
+
+Files: debian/*
+Copyright: 2023, LunarG Inc <johnz@lunarg.com>
+License: Apache-2.0
+
+License: Apache-2
+Comment: Add the corresponding license text here
 
 License: Apache-2.0
  Apache License
@@ -224,6 +223,9 @@ License: Apache-2.0
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
+
+License: CC-BY-4
+Comment: Add the corresponding license text here
 
 License: MIT/X11
  Copyright (C) <date> X Consortium
