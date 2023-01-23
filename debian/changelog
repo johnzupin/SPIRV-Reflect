@@ -1,3 +1,19 @@
+spirv-reflect (1.0.0+198~rc1-1lunarg22.04-1) jammy; urgency=medium
+
+  [ Cassandra Beckley ]
+  * Enable warnings and fix them
+
+  [ Alister Chowdhury ]
+  * Adding word offset to SpvReflectBlockVariable
+
+  [ Cassandra Beckley ]
+  * Use same .clang-format as SPIRV-Tools
+
+  [ John Zupin ]
+  * packaging: debian: update copyright
+
+ -- john <john@odin>  Mon, 23 Jan 2023 14:16:01 -0700
+
 spirv-reflect (1.0.0+192~rc1-1lunarg22.04-1) jammy; urgency=medium
 
   [ Pedro J. Estébanez ]
