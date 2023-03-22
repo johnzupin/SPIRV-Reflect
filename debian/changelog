@@ -1,3 +1,20 @@
+spirv-reflect (1.0.0+206~rc1-1lunarg22.04-1) jammy; urgency=medium
+
+  [ Wenbo Chen ]
+  * Simple implementation for VK_EXT_mesh_shader supporting
+  * tab -> space
+  * Update spirv_reflect.h
+  * fix task stage
+  * add test
+
+  [ Cassandra Beckley ]
+  * Add GitHub actions to check formatting and run tests (#165)
+
+  [ Wenbo Chen ]
+  * add execution model output
+
+ -- john <john@odin>  Wed, 22 Mar 2023 13:18:31 -0600
+
 spirv-reflect (1.0.0+198~rc1-1lunarg22.04-1) jammy; urgency=medium
 
   [ Cassandra Beckley ]
