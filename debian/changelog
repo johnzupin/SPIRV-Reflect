@@ -1,3 +1,24 @@
+spirv-reflect (1.0.0+251~rc1-1lunarg20.04-1) focal; urgency=medium
+
+  [ William Lohry ]
+  * Ensuring embedded source is freed before assignment; e.g. to handle #include directives.
+
+  [ Gregor Mueckl ]
+  * Fix use of strcat_s when parsing SpvOpSourceContinued
+
+  [ Greg Fischer ]
+  * Fix usage for push constants
+
+  [ Diego Novillo ]
+  * Update spirv.h to the latest version in SPIRV-Headers. (#171)
+  * Indicate that master branch has been renamed. (#175)
+
+  [ Hai Nguyen ]
+  * Explicit initialization to zero for parser
+  * Removed brace initializer
+
+ -- john <john@odin>  Tue, 23 May 2023 15:39:42 -0600
+
 spirv-reflect (1.0.0+206~rc1-1lunarg20.04-1) focal; urgency=medium
 
   [ Wenbo Chen ]
