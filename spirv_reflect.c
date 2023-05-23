@@ -707,6 +707,7 @@ static SpvReflectResult ParseNodes(SpvReflectPrvParser* p_parser)
           strcpy(p_source_temp, p_source);
       #endif
 
+          SafeFree(p_parser->source_embedded);
           p_parser->source_embedded = p_source_temp;
         }
       }
@@ -725,7 +726,7 @@ static SpvReflectResult ParseNodes(SpvReflectPrvParser* p_parser)
 
     #ifdef _WIN32
         strcpy_s(p_continued_source, embedded_source_len + 1, p_parser->source_embedded);
-        strcat_s(p_continued_source, source_len + 1, p_source);
+        strcat_s(p_continued_source, embedded_source_len + source_len + 1, p_source);
     #else
         strcpy(p_continued_source, p_parser->source_embedded);
         strcat(p_continued_source, p_source);
@@ -2429,7 +2430,7 @@ static SpvReflectResult ParseDescriptorBlockVariableSizes(
 
 static void MarkSelfAndAllMemberVarsAsUsed(SpvReflectBlockVariable* p_var)
 {
-  // Clear the current variable's USED flag
+  // Clear the current variable's UNUSED flag
   p_var->flags &= ~SPV_REFLECT_VARIABLE_FLAGS_UNUSED;
 
   SpvOp op_type = p_var->type_description->op;
@@ -2496,7 +2497,7 @@ static SpvReflectResult ParseDescriptorBlockVariableUsage(
       }
 
       // Only continue parsing if there's remaining indices in the access
-      // chain. If the end of the access chain has been reach then all
+      // chain. If the end of the access chain has been reached then all
       // remaining variables (including those in struct hierarchies)
       // are considered USED.
       //
@@ -3449,6 +3450,25 @@ static SpvReflectResult ParsePushConstantBlocks(
     if (result != SPV_REFLECT_RESULT_SUCCESS) {
       return result;
     }
+
+    for (uint32_t access_chain_index = 0;
+         access_chain_index < p_parser->access_chain_count;
+         ++access_chain_index) {
+      SpvReflectPrvAccessChain* p_access_chain =
+          &(p_parser->access_chains[access_chain_index]);
+      // Skip any access chains that aren't touching this push constant block
+      if (p_push_constant->spirv_id != p_access_chain->base_id) {
+        continue;
+      }
+      result = ParseDescriptorBlockVariableUsage(
+          p_parser, p_module, p_access_chain, 0, (SpvOp)INVALID_VALUE,
+          p_push_constant);
+      if (result != SPV_REFLECT_RESULT_SUCCESS) {
+        return result;
+      }
+    }
+
+    p_push_constant->name = p_node->name;
     result = ParseDescriptorBlockVariableSizes(p_parser, p_module, true, false, false, p_push_constant);
     if (result != SPV_REFLECT_RESULT_SUCCESS) {
       return result;
@@ -3699,7 +3719,11 @@ static SpvReflectResult CreateShaderModule(
     memcpy(p_module->_internal->spirv_code, p_code, size);
   }
 
-  SpvReflectPrvParser parser = { 0 };
+  // Initialize everything to zero
+  SpvReflectPrvParser parser;
+  memset(&parser, 0, sizeof(SpvReflectPrvParser));
+
+  // Create parser
   SpvReflectResult result = CreateParser(p_module->_internal->spirv_size,
                                          p_module->_internal->spirv_code,
                                          &parser);
