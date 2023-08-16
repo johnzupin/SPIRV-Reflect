@@ -1,3 +1,89 @@
+spirv-reflect (1.0.0+282~rc1-1lunarg20.04-1) focal; urgency=medium
+
+  [ spencer-lunarg ]
+  * Add more information to struct members
+  * Update new golden yaml tests
+  * Fix crash if AccessChain has no indexes
+
+  [ Greg Fischer ]
+  * Add support for buffer pointers in buffers
+
+  [ David Neto ]
+  * Update spirv.h, support "Hero C" language
+
+  [ TheDonsky ]
+  * Add cases for interlocked execution modes to Execution mode parser
+
+  [ Diego Novillo ]
+  * Update bazel-build.yml
+  * Add notice that Blaze support is about to be deprecated.
+
+  [ spencer-lunarg ]
+  * Remove trailing whitespace from header
+  * Hold Component decoration value with Location
+
+  [ alelenv ]
+  * Add enum for NV cooperative matrix type.
+
+  [ Pablo Delgado Krämer ]
+  * Add support for GLSL_NV_shader_invocation_reorder
+
+  [ spencer-lunarg ]
+  * Add to README one can use system SPIR-V headers
+  * add vscode to gitignore
+  * Run dos2unix on test scripts
+  * Fix tests to run from any directory
+
+  [ Greg Fischer ]
+  * Add missing braces
+
+  [ spencer-lunarg ]
+  * Add block offset to Push Constant BlockVariable
+
+  [ Coleman Engbrecht ]
+  * Add define that disables the cxx implementation
+
+  [ Diego Novillo ]
+  * Remove support for building with Bazel.
+
+  [ forenoonwatch ]
+  * Fix finding function parameter baseID of OpAccessChain
+
+  [ spencer-lunarg ]
+  * update SPIRV-Headers for SPV_KHR_cooperative_matrix support
+  * Add CooperativeMatrix support
+  * Add 16-bit format support
+  * Fix GCC errors for maybe-uninitialized
+
+  [ James Price ]
+  * Update spirv.h, add support for "NZSL" language
+
+  [ spencer-lunarg ]
+  * Fix crash if accesschain base_id not found
+  * Use Enum instead of magic value for Array Dim
+  * Add CI suite with SPIRV-Database
+
+  [ Steven Perron ]
+  * Add default case to switch
+
+  [ spencer-lunarg ]
+  * Add way to access structs in array-of-structs
+
+  [ Hai Nguyen ]
+  * Update spirv_reflect.h
+
+  [ Steven Perron ]
+  * Change the string that is returned when the language is unknown.
+  * Update test.
+
+  [ Diego Novillo ]
+  * Update README file to document removal of Bazel support.
+
+  [ Spencer Fricke ]
+  * Fix regression in buffer reference crashing (#213)
+
+ -- john <john@odin>  Wed, 16 Aug 2023 10:49:43 -0600
+
 spirv-reflect (1.0.0+251~rc1-1lunarg20.04-1) focal; urgency=medium
 
   [ William Lohry ]
