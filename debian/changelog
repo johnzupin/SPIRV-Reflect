@@ -1,3 +1,40 @@
+spirv-reflect (1.0.0+309~rc1-1lunarg22.04-1) jammy; urgency=medium
+
+  [ spencer-lunarg ]
+  * Allow all ExecutionModes
+  * Add LocalSizeId support
+
+  [ ZXCqwe666 ]
+  * Fixed localSizeId always reading from x_node
+
+  [ spencer-lunarg ]
+  * Add Array interface variables decorations
+  * Add Vertex Interface Builtin tests
+  * Print all BuiltIns inside a block
+  * Add geometry interface test
+  * dos2unix CMakelists.txt
+  * Add ASAN to CI
+  * Remove Stripper
+
+  [ Cassandra Beckley ]
+  * Create SECURITY.md
+  * Check return values from FindNode for null pointers (#228)
+
+  [ Spencer Fricke ]
+  * Add Explorer example (#235)
+  * rerun clang-format with 132 line width (#233)
+  * add .git-blame-ignore-revs file (#237)
+
+  [ Wooyoung Kim ]
+  * Add the SPV_QCOM_image_processing support (#239)
+
+  [ Spencer Fricke ]
+  * Add AccessedVariable struct and logic (#238)
+  * Handle multiple PhysicalStorageBuffer in same struct (#232)
+  * Fix empty calloc returning false Alloc Failure (#240)
+
+ -- john <john@odin>  Tue, 09 Jan 2024 16:04:31 -0700
+
 spirv-reflect (1.0.0+282~rc1-1lunarg22.04-1) jammy; urgency=medium
 
   [ spencer-lunarg ]
