@@ -1,3 +1,27 @@
+spirv-reflect (1.0.0+371~rc1-1lunarg20.04-1) focal; urgency=medium
+
+  [ Spencer Fricke ]
+  * Fix and improve CI Testing of database shader (#245)
+  * Remove temp spirv-header enums (#246)
+  * Print Spec Constant value in type array by default (#241)
+  * Add Spec Constant API (#242)
+  * Add SPV_GOOGLE_user_type support (#247)
+  * Add ByteAddressBuffer support (#248)
+
+  [ Jakub Marcowski ]
+  * Remove word duplicates in `spirv_reflect.c` (#252)
+
+  [ Cassandra Beckley ]
+  * Update SPV_GOOGLE_user_type based on spec (#253)
+
+  [ Spencer Fricke ]
+  * Parse name of specialization constants (#251)
+
+  [ Panagiotis Apostolou ]
+  * Promote member decorations to descriptor binding decorations (#243)
+
+ -- john <john@odin>  Tue, 12 Mar 2024 13:34:36 -0600
+
 spirv-reflect (1.0.0+309~rc1-1lunarg20.04-1) focal; urgency=medium
 
   [ spencer-lunarg ]
