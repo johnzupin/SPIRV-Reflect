@@ -631,6 +631,91 @@ std::string ToStringSpvImageFormat(SpvImageFormat fmt) {
   return "???";
 }
 
+std::string ToStringUserType(SpvReflectUserType user_type) {
+  switch (user_type) {
+    case SPV_REFLECT_USER_TYPE_CBUFFER:
+      return "cbuffer";
+    case SPV_REFLECT_USER_TYPE_TBUFFER:
+      return "tbuffer";
+    case SPV_REFLECT_USER_TYPE_APPEND_STRUCTURED_BUFFER:
+      return "AppendStructuredBuffer";
+    case SPV_REFLECT_USER_TYPE_BUFFER:
+      return "Buffer";
+    case SPV_REFLECT_USER_TYPE_BYTE_ADDRESS_BUFFER:
+      return "ByteAddressBuffer";
+    case SPV_REFLECT_USER_TYPE_CONSTANT_BUFFER:
+      return "ConstantBuffer";
+    case SPV_REFLECT_USER_TYPE_CONSUME_STRUCTURED_BUFFER:
+      return "ConsumeStructuredBuffer";
+    case SPV_REFLECT_USER_TYPE_INPUT_PATCH:
+      return "InputPatch";
+    case SPV_REFLECT_USER_TYPE_OUTPUT_PATCH:
+      return "OutputPatch";
+    case SPV_REFLECT_USER_TYPE_RASTERIZER_ORDERED_BUFFER:
+      return "RasterizerOrderedBuffer";
+    case SPV_REFLECT_USER_TYPE_RASTERIZER_ORDERED_BYTE_ADDRESS_BUFFER:
+      return "RasterizerOrderedByteAddressBuffer";
+    case SPV_REFLECT_USER_TYPE_RASTERIZER_ORDERED_STRUCTURED_BUFFER:
+      return "RasterizerOrderedStructuredBuffer";
+    case SPV_REFLECT_USER_TYPE_RASTERIZER_ORDERED_TEXTURE_1D:
+      return "RasterizerOrderedTexture1D";
+    case SPV_REFLECT_USER_TYPE_RASTERIZER_ORDERED_TEXTURE_1D_ARRAY:
+      return "RasterizerOrderedTexture1DArray";
+    case SPV_REFLECT_USER_TYPE_RASTERIZER_ORDERED_TEXTURE_2D:
+      return "RasterizerOrderedTexture2D";
+    case SPV_REFLECT_USER_TYPE_RASTERIZER_ORDERED_TEXTURE_2D_ARRAY:
+      return "RasterizerOrderedTexture2DArray";
+    case SPV_REFLECT_USER_TYPE_RASTERIZER_ORDERED_TEXTURE_3D:
+      return "RasterizerOrderedTexture3D";
+    case SPV_REFLECT_USER_TYPE_RAYTRACING_ACCELERATION_STRUCTURE:
+      return "RaytracingAccelerationStructure";
+    case SPV_REFLECT_USER_TYPE_RW_BUFFER:
+      return "RWBuffer";
+    case SPV_REFLECT_USER_TYPE_RW_BYTE_ADDRESS_BUFFER:
+      return "RWByteAddressBuffer";
+    case SPV_REFLECT_USER_TYPE_RW_STRUCTURED_BUFFER:
+      return "RWStructuredBuffer";
+    case SPV_REFLECT_USER_TYPE_RW_TEXTURE_1D:
+      return "RWTexture1D";
+    case SPV_REFLECT_USER_TYPE_RW_TEXTURE_1D_ARRAY:
+      return "RWTexture1DArray";
+    case SPV_REFLECT_USER_TYPE_RW_TEXTURE_2D:
+      return "RWTexture2D";
+    case SPV_REFLECT_USER_TYPE_RW_TEXTURE_2D_ARRAY:
+      return "RWTexture2DArray";
+    case SPV_REFLECT_USER_TYPE_RW_TEXTURE_3D:
+      return "RWTexture3D";
+    case SPV_REFLECT_USER_TYPE_STRUCTURED_BUFFER:
+      return "StructuredBuffer";
+    case SPV_REFLECT_USER_TYPE_SUBPASS_INPUT:
+      return "SubpassInput";
+    case SPV_REFLECT_USER_TYPE_SUBPASS_INPUT_MS:
+      return "SubpassInputMS";
+    case SPV_REFLECT_USER_TYPE_TEXTURE_1D:
+      return "Texture1D";
+    case SPV_REFLECT_USER_TYPE_TEXTURE_1D_ARRAY:
+      return "Texture1DArray";
+    case SPV_REFLECT_USER_TYPE_TEXTURE_2D:
+      return "Texture2D";
+    case SPV_REFLECT_USER_TYPE_TEXTURE_2D_ARRAY:
+      return "Texture2DArray";
+    case SPV_REFLECT_USER_TYPE_TEXTURE_2DMS:
+      return "Texture2DMS";
+    case SPV_REFLECT_USER_TYPE_TEXTURE_2DMS_ARRAY:
+      return "Texture2DMSArray";
+    case SPV_REFLECT_USER_TYPE_TEXTURE_3D:
+      return "Texture3D";
+    case SPV_REFLECT_USER_TYPE_TEXTURE_BUFFER:
+      return "TextureBuffer";
+    case SPV_REFLECT_USER_TYPE_TEXTURE_CUBE:
+      return "TextureCube";
+    case SPV_REFLECT_USER_TYPE_TEXTURE_CUBE_ARRAY:
+      return "TextureCubeArray";
+    default:
+      return "???";
+  }
+}
+
 std::string ToStringTypeFlags(SpvReflectTypeFlags type_flags) {
   if (type_flags == SPV_REFLECT_TYPE_FLAG_UNDEFINED) {
     return "UNDEFINED";
@@ -676,6 +761,7 @@ std::string ToStringDecorationFlags(SpvReflectDecorationFlags decoration_flags) 
   }
   std::stringstream sstream;
   PRINT_AND_CLEAR_DECORATION_FLAG(sstream, decoration_flags, NON_WRITABLE);
+  PRINT_AND_CLEAR_DECORATION_FLAG(sstream, decoration_flags, NON_READABLE);
   PRINT_AND_CLEAR_DECORATION_FLAG(sstream, decoration_flags, FLAT);
   PRINT_AND_CLEAR_DECORATION_FLAG(sstream, decoration_flags, NOPERSPECTIVE);
   PRINT_AND_CLEAR_DECORATION_FLAG(sstream, decoration_flags, BUILT_IN);
@@ -1723,7 +1809,6 @@ void SpvReflectToYaml::WriteBlockVariable(std::ostream& os, const SpvReflectBloc
   os << t2 << "matrix: { ";
   os << "column_count: " << bv.numeric.matrix.column_count << ", ";
   os << "row_count: " << bv.numeric.matrix.row_count << ", ";
-  ;
   os << "stride: " << bv.numeric.matrix.stride << " }" << std::endl;
   // } SpvReflectNumericTraits;
 
@@ -1807,6 +1892,9 @@ void SpvReflectToYaml::WriteDescriptorBinding(std::ostream& os, const SpvReflect
   os << t1 << "input_attachment_index: " << db.input_attachment_index << std::endl;
   //   uint32_t                            set;
   os << t1 << "set: " << db.set << std::endl;
+  //   SpvReflectDecorationFlags           decoration_flags;
+  os << t1 << "decoration_flags: " << AsHexString(db.decoration_flags) << " # " << ToStringDecorationFlags(db.decoration_flags)
+     << std::endl;
   //   SpvReflectDescriptorType            descriptor_type;
   os << t1 << "descriptor_type: " << db.descriptor_type << " # " << ToStringDescriptorType(db.descriptor_type) << std::endl;
   //   SpvReflectResourceType              resource_type;
@@ -1862,6 +1950,18 @@ void SpvReflectToYaml::WriteDescriptorBinding(std::ostream& os, const SpvReflect
     assert(itor != descriptor_binding_to_index_.end());
     os << t1 << "uav_counter_binding: *db" << itor->second << " # " << SafeString(db.uav_counter_binding->name) << std::endl;
   }
+
+  if (db.byte_address_buffer_offset_count > 0) {
+    os << t1 << "ByteAddressBuffer offsets: [";
+    for (uint32_t i = 0; i < db.byte_address_buffer_offset_count; i++) {
+      os << db.byte_address_buffer_offsets[i];
+      if (i < (db.byte_address_buffer_offset_count - 1)) {
+        os << ", ";
+      }
+    }
+    os << "]\n";
+  }
+
   if (verbosity_ >= 1) {
     //   SpvReflectTypeDescription*        type_description;
     if (db.type_description == nullptr) {
@@ -1878,6 +1978,10 @@ void SpvReflectToYaml::WriteDescriptorBinding(std::ostream& os, const SpvReflect
   //   } word_offset;
   os << t1 << "word_offset: { binding: " << db.word_offset.binding;
   os << ", set: " << db.word_offset.set << " }" << std::endl;
+
+  if (db.user_type != SPV_REFLECT_USER_TYPE_INVALID) {
+    os << t1 << "user_type: " << ToStringUserType(db.user_type) << std::endl;
+  }
   // } SpvReflectDescriptorBinding;
 }
 
@@ -1946,7 +2050,6 @@ void SpvReflectToYaml::WriteInterfaceVariable(std::ostream& os, const SpvReflect
   os << t2 << "matrix: { ";
   os << "column_count: " << iv.numeric.matrix.column_count << ", ";
   os << "row_count: " << iv.numeric.matrix.row_count << ", ";
-  ;
   os << "stride: " << iv.numeric.matrix.stride << " }" << std::endl;
   // } SpvReflectNumericTraits;
 
@@ -2172,6 +2275,16 @@ void SpvReflectToYaml::Write(std::ostream& os) {
     auto itor = block_variable_to_index_.find(&sm_.push_constant_blocks[i]);
     assert(itor != block_variable_to_index_.end());
     os << t2 << "- *bv" << itor->second << " # " << SafeString(sm_.push_constant_blocks[i].name) << std::endl;
+  }
+
+  // uint32_t                            spec_constant_count;
+  os << t1 << "specialization_constant_count: " << sm_.spec_constant_count << ",\n";
+  // SpvReflectSpecializationConstant*   spec_constants;
+  os << t1 << "specialization_constants:" << std::endl;
+  for (uint32_t i = 0; i < sm_.spec_constant_count; ++i) {
+    os << t3 << "spirv_id: " << sm_.spec_constants[i].spirv_id << std::endl;
+    os << t3 << "constant_id: " << sm_.spec_constants[i].constant_id << std::endl;
+    os << t3 << "name: " << SafeString(sm_.spec_constants[i].name) << std::endl;
   }
 
   if (verbosity_ >= 2) {
