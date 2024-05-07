@@ -1,3 +1,19 @@
+spirv-reflect (1.0.0+372~rc1-1lunarg22.04-1) jammy; urgency=medium
+
+  [ Matt Stevens ]
+  * Don't set output_vertices from other execution modes (#256)
+
+  [ Victor Coda ]
+  * fallthrough attribute was introduced only in GCC 7.0 (#258)
+
+  [ Spencer Fricke ]
+  * Update golden YAML for tests (#260)
+  * Fix asserting from uvec2 buffer reference bitcast (#259)
+  * Fix struct padded size if offset are out-of-order (#263)
+  * Fix struct variable size with out-of-order offsets (#264)
+
+ -- john <john@odin>  Tue, 07 May 2024 10:50:46 -0600
+
 spirv-reflect (1.0.0+371~rc1-1lunarg22.04-1) jammy; urgency=medium
 
   [ Spencer Fricke ]
