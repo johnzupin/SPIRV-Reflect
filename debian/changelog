@@ -1,3 +1,16 @@
+spirv-reflect (1.0.0+373~rc1-1lunarg22.04-1) jammy; urgency=medium
+
+  [ Sergey Kosarevsky ]
+  * Bump CMake version to 3.5 (#265)
+
+  [ Fabian Schmidt ]
+  * Add ARCHIVE DESTINATION for static library target (#270)
+
+  [ Spencer Fricke ]
+  * Fix runtime array of BufferDeviceAddresses (#273)
+
+ -- john <john@odin>  Tue, 16 Jul 2024 14:37:17 -0600
+
 spirv-reflect (1.0.0+372~rc1-1lunarg22.04-1) jammy; urgency=medium
 
   [ Matt Stevens ]
