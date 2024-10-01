@@ -1,3 +1,22 @@
+spirv-reflect (1.0.0+374~rc1-1lunarg22.04-1) jammy; urgency=medium
+
+  [ Daniel Story ]
+  * Correctly report liveness of variables passed as function parameters (#267)
+
+  [ Geor Kasapidi ]
+  * fix yaml generation for specialization constants (#274)
+
+  [ Spencer Fricke ]
+  * Fix order of ByteAddressBuffer offsets in YAML (#275)
+
+  [ Sergey Kosarevsky ]
+  * Update CMake to 3.16 (#277)
+
+  [ Flinti ]
+  * Fix doc comment for ShaderModule::GetSourceFile (#279)
+
+ -- john <john@odin>  Tue, 01 Oct 2024 11:37:04 -0600
+
 spirv-reflect (1.0.0+373~rc1-1lunarg22.04-1) jammy; urgency=medium
 
   [ Sergey Kosarevsky ]
