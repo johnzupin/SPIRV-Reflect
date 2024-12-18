@@ -14,8 +14,19 @@ Files: include/*
 Copyright: 2014-2020, The Khronos Group Inc
 License: MIT/X11
 
+Files: LICENSE
+       README.md
+       examples/main_explorer.cpp
+       examples/main_hlsl_resource_types.cpp
+       main.cpp
+       spirv_reflect.c
+       spirv_reflect.h
+Copyright: 2017-2022, Google Inc
+           2023, LunarG, Inc
+License: Apache-2
+
 Files: debian/*
-Copyright: 2023, LunarG Inc <johnz@lunarg.com>
+Copyright: 2024, LunarG Inc <johnz@lunarg.com>
 License: Apache-2.0
 
 License: Apache-2
