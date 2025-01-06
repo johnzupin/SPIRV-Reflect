@@ -1,3 +1,26 @@
+spirv-reflect (1.0.0+375~rc1-1lunarg22.04-1) jammy; urgency=medium
+
+  [ Spencer Fricke ]
+  * Add stdin parsing of spirv (#284)
+
+  [ Daniel Roschka ]
+  * Fix generating invalid YAML files (#282)
+
+  [ Spencer Fricke ]
+  * Add redirect for stdout to a file (#285)
+
+  [ Steven Perron ]
+  * Fix undefined enums (#286)
+
+  [ Spencer Fricke ]
+  * Fix PushConstant padding to 16 bytes (#292)
+  * Fix crash in non-struct physical storage pointers (#289)
+
+  [ John Zupin ]
+  * packaging: debian: update copyright
+
+ -- john <john@odin>  Mon, 06 Jan 2025 16:46:20 -0700
+
 spirv-reflect (1.0.0+374~rc1-1lunarg22.04-1) jammy; urgency=medium
 
   [ Daniel Story ]
