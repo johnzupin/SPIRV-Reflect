@@ -42,12 +42,13 @@
 
 // clang-format off
 enum {
-  SPIRV_STARTING_WORD_INDEX       = 5,
-  SPIRV_WORD_SIZE                 = sizeof(uint32_t),
-  SPIRV_BYTE_WIDTH                = 8,
-  SPIRV_MINIMUM_FILE_SIZE         = SPIRV_STARTING_WORD_INDEX * SPIRV_WORD_SIZE,
-  SPIRV_DATA_ALIGNMENT            = 4 * SPIRV_WORD_SIZE, // 16
-  SPIRV_ACCESS_CHAIN_INDEX_OFFSET = 4,
+  SPIRV_STARTING_WORD_INDEX           = 5,
+  SPIRV_WORD_SIZE                     = sizeof(uint32_t),
+  SPIRV_BYTE_WIDTH                    = 8,
+  SPIRV_MINIMUM_FILE_SIZE             = SPIRV_STARTING_WORD_INDEX * SPIRV_WORD_SIZE,
+  SPIRV_DATA_ALIGNMENT                = 4 * SPIRV_WORD_SIZE, // 16
+  SPIRV_ACCESS_CHAIN_INDEX_OFFSET     = 4,
+  SPIRV_PHYSICAL_STORAGE_POINTER_SIZE = 8, // Pointers are defined as 64-bit
 };
 
 enum {
@@ -2733,8 +2734,8 @@ static SpvReflectResult ParseDescriptorBlockVariableSizes(SpvReflectPrvParser* p
 
         // If we found a struct, we need to fall through and get the size of it or else we grab the size here
         if (p_member_type->op != SpvOpTypeStruct) {
-          // TODO - we need to rework this loop as a function to get size for each type
-          // (or maybe determine this size doesn't matter if not a struct in the pointer)
+          // If we hit this, we are seeing a POD pointer and the size is fixed
+          p_member_var->size = SPIRV_PHYSICAL_STORAGE_POINTER_SIZE;
           break;
         }
         FALLTHROUGH;
@@ -2828,19 +2829,11 @@ static void MarkSelfAndAllMemberVarsAsUsed(SpvReflectBlockVariable* p_var) {
   p_var->flags &= ~SPV_REFLECT_VARIABLE_FLAGS_UNUSED;
 
   SpvOp op_type = p_var->type_description->op;
-  switch (op_type) {
-    default:
-      break;
-
-    case SpvOpTypeArray: {
-    } break;
-
-    case SpvOpTypeStruct: {
-      for (uint32_t i = 0; i < p_var->member_count; ++i) {
-        SpvReflectBlockVariable* p_member_var = &p_var->members[i];
-        MarkSelfAndAllMemberVarsAsUsed(p_member_var);
-      }
-    } break;
+  if (op_type == SpvOpTypeStruct) {
+    for (uint32_t i = 0; i < p_var->member_count; ++i) {
+      SpvReflectBlockVariable* p_member_var = &p_var->members[i];
+      MarkSelfAndAllMemberVarsAsUsed(p_member_var);
+    }
   }
 }
 
@@ -2957,7 +2950,10 @@ static SpvReflectResult ParseDescriptorBlockVariableUsage(SpvReflectPrvParser* p
         if (result != SPV_REFLECT_RESULT_SUCCESS) {
           return result;
         }
-      } else if (!is_pointer_to_pointer) {
+      } else if (is_pointer_to_pointer) {
+        // Clear UNUSED flag, but only for the pointer
+        p_member_var->flags &= ~SPV_REFLECT_VARIABLE_FLAGS_UNUSED;
+      } else {
         // Clear UNUSED flag for remaining variables
         MarkSelfAndAllMemberVarsAsUsed(p_member_var);
       }
