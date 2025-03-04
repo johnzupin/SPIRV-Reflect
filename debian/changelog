@@ -1,3 +1,14 @@
+spirv-reflect (1.0.0+376~rc1-1lunarg24.04-1) noble; urgency=medium
+
+  [ Spencer Fricke ]
+  * Fix size of struct with POD pointer in it (#295)
+  * Add more tests for future changes (#296)
+  * Add SpvReflectVariableFlags to YAML (#298)
+  * Detect first level of BDA pointers (#299)
+  * Extra test for push constant pointers (#301)
+
+ -- john <john@odin>  Tue, 04 Mar 2025 11:07:55 -0700
+
 spirv-reflect (1.0.0+375~rc1-1lunarg24.04-1) noble; urgency=medium
 
   [ Spencer Fricke ]
