@@ -1,3 +1,13 @@
+spirv-reflect (1.0.0+377~rc1-1lunarg24.04-1) noble; urgency=medium
+
+  [ HolyBlackCat ]
+  * Install the header along with the library.
+
+  [ spencer-lunarg ]
+  * Update gtest to support cmake 4.0
+
+ -- john <john@odin>  Tue, 29 Apr 2025 11:29:31 -0600
+
 spirv-reflect (1.0.0+376~rc1-1lunarg24.04-1) noble; urgency=medium
 
   [ Spencer Fricke ]
